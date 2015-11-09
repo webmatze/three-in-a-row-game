@@ -17,10 +17,10 @@ var Level = React.createClass({
     };
   },
   componentDidMount: function() {
-    var fields = this.__initializeFields(this.props.level);
+    var fields = this._initializeFields(this.props.level);
     this.setState({ fields: fields.concat([]) });
   },
-  __initializeFields: function(level) {
+  _initializeFields: function(level) {
     var fieldCount = this.props.width * this.props.height;
     var fields = [];
     var myRandomizer = seedRandom(level.seed, level.stones.length);
