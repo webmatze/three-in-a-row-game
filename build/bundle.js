@@ -19029,7 +19029,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Field = exports.Field = _react2.default.createClass({
   propTypes: {
-    field: _react.PropTypes.object,
+    field: _react.PropTypes.object.isRequired,
     onFieldClick: _react.PropTypes.func
   },
   _handleClick: function _handleClick(event) {
@@ -19070,9 +19070,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Level = exports.Level = _react2.default.createClass({
   propTypes: {
-    width: _react2.default.PropTypes.number,
-    height: _react2.default.PropTypes.number,
-    level: _react2.default.PropTypes.object
+    width: _react.PropTypes.number.isRequired,
+    height: _react.PropTypes.number.isRequired,
+    level: _react.PropTypes.shape({
+      id: _react.PropTypes.number.isRequired,
+      seed: _react.PropTypes.number.isRequired,
+      stones: _react.PropTypes.arrayOf(_react.PropTypes.object).isRequired
+    }).isRequired
   },
   getInitialState: function getInitialState() {
     return {
@@ -19099,9 +19103,11 @@ var Level = exports.Level = _react2.default.createClass({
     this.setState({ fields: this.state.fields });
   },
   render: function render() {
-    var createFields = (function (field, index) {
-      return _react2.default.createElement(_field.Field, { key: field.id, field: field, onFieldClick: this._handleFieldClick });
-    }).bind(this);
+    var _this = this;
+
+    var createFields = function createFields(field, index) {
+      return _react2.default.createElement(_field.Field, { key: field.id, field: field, onFieldClick: _this._handleFieldClick });
+    };
     return _react2.default.createElement(
       'div',
       { className: 'level' },

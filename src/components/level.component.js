@@ -4,21 +4,25 @@ import { seedRandom } from '../seed-random'
 
 export var Level = React.createClass({
   propTypes: {
-    width: React.PropTypes.number,
-    height: React.PropTypes.number,
-    level: React.PropTypes.object
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
+    level: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      seed: PropTypes.number.isRequired,
+      stones: PropTypes.arrayOf(PropTypes.object).isRequired
+    }).isRequired
   },
-  getInitialState: function() {
+  getInitialState() {
     return {
       points: 0,
       fields: []
     };
   },
-  componentDidMount: function() {
+  componentDidMount() {
     var fields = this._initializeFields(this.props.level);
     this.setState({ fields: fields.concat([]) });
   },
-  _initializeFields: function(level) {
+  _initializeFields(level) {
     var fieldCount = this.props.width * this.props.height;
     var fields = [];
     var myRandomizer = seedRandom(level.seed, level.stones.length);
@@ -28,16 +32,16 @@ export var Level = React.createClass({
     }
     return fields;
   },
-  _handleFieldClick: function(field) {
+  _handleFieldClick(field) {
     field.state += 1;
     this.setState({ fields: this.state.fields });
   },
-  render: function() {
-    var createFields = function(field, index) {
+  render() {
+    var createFields = (field, index) => {
       return (
         <Field key={ field.id } field={ field } onFieldClick={ this._handleFieldClick } />
       );
-    }.bind(this);
+    };
     return (
       <div className="level">{ this.state.fields.map(createFields) }</div>
     );

@@ -2,13 +2,13 @@ import React, { PropTypes } from 'react'
 
 export var Field = React.createClass({
   propTypes: {
-    field: PropTypes.object,
+    field: PropTypes.object.isRequired,
     onFieldClick: PropTypes.func
   },
-  _handleClick: function(event) {
+  _handleClick(event) {
     this.props.onFieldClick(this.props.field);
   },
-  render: function() {
+  render() {
     var styles = {
       width: "10%",
       height: "30px",
