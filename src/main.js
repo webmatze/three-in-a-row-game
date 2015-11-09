@@ -3,16 +3,7 @@
 
   var React = require('react');
   var ReactDOM = require('react-dom');
-
-  function seedRandom(seed, range) {
-    var adder = 0;
-    return {
-      next: function() {
-        var big = (seed + adder++) * Math.PI;
-        return Math.floor((big * adder - seed) % range);
-      }
-    }
-  }
+  var seedRandom = require('./seed-random');
 
   var STONES = [
     { id: 1, color: "red", image: "http://" },
