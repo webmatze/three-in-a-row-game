@@ -1,0 +1,21 @@
+/* line 3, ../sass/main.sass */
+.level {
+  width: 100%;
+}
+/* line 5, ../sass/main.sass */
+.level .field {
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  display: block;
+  float: left;
+  text-align: center;
+  padding-top: 10px;
+}
+/* line 11, ../sass/main.sass */
+.level .field:hover {
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
