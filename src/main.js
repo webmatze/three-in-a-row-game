@@ -3,69 +3,24 @@
 
   var React = require('react');
   var ReactDOM = require('react-dom');
-  var seedRandom = require('./seed-random');
 
   //Components
-  var Field = require('./components/field.component');
+  var Level = require('./components/level.component');
 
-  var STONES = [
-    { id: 1, color: "red", image: "http://" },
-    { id: 2, color: "blue", image: "http://" },
-    { id: 3, color: "green", image: "http://" },
-    { id: 4, color: "yellow", image: "http://" },
-    { id: 5, color: "orange", image: "http://" },
-    { id: 6, color: "grey", image: "http://" },
-    { id: 7, color: "pink", image: "http://" }
-  ];
+  var red = { id: 1, color: "red", image: "http://" };
+  var blue = { id: 2, color: "blue", image: "http://" };
+  var green = { id: 3, color: "green", image: "http://" };
+  var yellow = { id: 4, color: "yellow", image: "http://" };
+  var orange = { id: 5, color: "orange", image: "http://" };
+  var grey = { id: 6, color: "grey", image: "http://" };
+  var pink = { id: 7, color: "pink", image: "http://" };
+
   var LEVELS = [
-    { id: 1, seed: 12345, stones: [1, 2, 3, 4, 5, 6, 7] }
+    { id: 1, seed: 12345, stones: [red, blue, green, yellow, orange, grey, pink] }
   ];
-
-  var Level = React.createClass({
-    __initializeFields: function(level) {
-      var fieldCount = this.props.width * this.props.height;
-      var fields = [];
-      var myRandomizer = seedRandom(level.seed, level.stones.length);
-      for (var i = 0; i < fieldCount; i++) {
-        var stoneId = level.stones[myRandomizer.next()];
-        fields.push({ id: i, stone: stoneId, state: 0 });
-      }
-      return fields;
-    },
-    getInitialState: function() {
-      return {
-        points: 0,
-        fields: []
-      };
-    },
-    componentDidMount: function() {
-      var levelId = this.props.id;
-      var level = LEVELS.find(function(l) {
-        return l.id == levelId;
-      });
-      var fields = this.__initializeFields(level);
-      this.setState({ fields: fields.concat([]) });
-    },
-    handleFieldClick: function(fieldId) {
-      var field = this.state.fields.find(function(f){ return f.id == fieldId; });
-      field.state += 1;
-      this.setState({ fields: this.state.fields });
-    },
-    render: function() {
-      var createFields = function(field, index) {
-        var stone = STONES.find(function(s) { return s.id == field.stone; }.bind(this));
-        return (
-          <Field key={ field.id } id={ field.id } stone={ stone } state={ field.state } onFieldClick={ this.handleFieldClick } />
-        );
-      }.bind(this);
-      return (
-        <div className="level">{ this.state.fields.map(createFields) }</div>
-      );
-    }
-  });
 
   ReactDOM.render(
-  	<Level id="1" width="10" height="5" />,
+  	<Level level={ LEVELS[0] } width={ 10 } height={ 5 } />,
       document.getElementById('container')
   );
 })();
