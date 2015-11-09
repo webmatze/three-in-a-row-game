@@ -1,6 +1,6 @@
 # Install npm modules
 
-npm install --save react react-dom babelify babel-preset-react babel-preset-es2015
+npm install
 
 # Install browserify
 
@@ -10,10 +10,6 @@ npm install -g browserify
 
 gem install compass
 
-# Compile JavaScript
+# Compile JavaScript, CSS, and run local server
 
-browserify -t [ babelify --presets [ react ] ] src/main.js -o build/bundle.js
-
-# Compile Sass to CSS
-
-compass compile
+npm start
