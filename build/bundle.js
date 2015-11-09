@@ -19016,12 +19016,21 @@ process.umask = function() { return 0; };
 },{}],159:[function(require,module,exports){
 "use strict";
 
-var React = require('react');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Field = undefined;
 
-var Field = React.createClass({
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Field = exports.Field = _react2.default.createClass({
   propTypes: {
-    field: React.PropTypes.object,
-    onFieldClick: React.PropTypes.func
+    field: _react.PropTypes.object,
+    onFieldClick: _react.PropTypes.func
   },
   _handleClick: function _handleClick(event) {
     this.props.onFieldClick(this.props.field);
@@ -19033,7 +19042,7 @@ var Field = React.createClass({
       backgroundColor: this.props.field.stone.color
     };
     var content = [this.props.field.stone.id, "/", this.props.field.state].join('');
-    return React.createElement(
+    return _react2.default.createElement(
       "div",
       { className: "field", style: styles, onClick: this._handleClick },
       content
@@ -19041,20 +19050,29 @@ var Field = React.createClass({
   }
 });
 
-module.exports = Field;
-
 },{"react":157}],160:[function(require,module,exports){
-"use strict";
+'use strict';
 
-var React = require('react');
-var Field = require('./field.component');
-var seedRandom = require('./../seed-random');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Level = undefined;
 
-var Level = React.createClass({
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _field = require('./field.component');
+
+var _seedRandom = require('../seed-random');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Level = exports.Level = _react2.default.createClass({
   propTypes: {
-    width: React.PropTypes.number,
-    height: React.PropTypes.number,
-    level: React.PropTypes.object
+    width: _react2.default.PropTypes.number,
+    height: _react2.default.PropTypes.number,
+    level: _react2.default.PropTypes.object
   },
   getInitialState: function getInitialState() {
     return {
@@ -19069,7 +19087,7 @@ var Level = React.createClass({
   _initializeFields: function _initializeFields(level) {
     var fieldCount = this.props.width * this.props.height;
     var fields = [];
-    var myRandomizer = seedRandom(level.seed, level.stones.length);
+    var myRandomizer = (0, _seedRandom.seedRandom)(level.seed, level.stones.length);
     for (var i = 0; i < fieldCount; i++) {
       var stone = level.stones[myRandomizer.next()];
       fields.push({ id: i, stone: stone, state: 0 });
@@ -19082,9 +19100,9 @@ var Level = React.createClass({
   },
   render: function render() {
     var createFields = (function (field, index) {
-      return React.createElement(Field, { key: field.id, field: field, onFieldClick: this._handleFieldClick });
+      return _react2.default.createElement(_field.Field, { key: field.id, field: field, onFieldClick: this._handleFieldClick });
     }).bind(this);
-    return React.createElement(
+    return _react2.default.createElement(
       'div',
       { className: 'level' },
       this.state.fields.map(createFields)
@@ -19092,37 +19110,43 @@ var Level = React.createClass({
   }
 });
 
-module.exports = Level;
-
-},{"./../seed-random":162,"./field.component":159,"react":157}],161:[function(require,module,exports){
+},{"../seed-random":162,"./field.component":159,"react":157}],161:[function(require,module,exports){
 'use strict';
 
-(function () {
-  'use strict';
+var _react = require('react');
 
-  var React = require('react');
-  var ReactDOM = require('react-dom');
+var _react2 = _interopRequireDefault(_react);
 
-  //Components
-  var Level = require('./components/level.component');
+var _reactDom = require('react-dom');
 
-  var red = { id: 1, color: "red", image: "http://" };
-  var blue = { id: 2, color: "blue", image: "http://" };
-  var green = { id: 3, color: "green", image: "http://" };
-  var yellow = { id: 4, color: "yellow", image: "http://" };
-  var orange = { id: 5, color: "orange", image: "http://" };
-  var grey = { id: 6, color: "grey", image: "http://" };
-  var pink = { id: 7, color: "pink", image: "http://" };
+var _reactDom2 = _interopRequireDefault(_reactDom);
 
-  var LEVELS = [{ id: 1, seed: 12345, stones: [red, blue, green, yellow, orange, grey, pink] }];
+var _level = require('./components/level.component');
 
-  ReactDOM.render(React.createElement(Level, { level: LEVELS[0], width: 10, height: 5 }), document.getElementById('container'));
-})();
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var RED = { id: 1, color: "red", image: "http://" };
+
+//Components
+
+var BLUE = { id: 2, color: "blue", image: "http://" };
+var GREEN = { id: 3, color: "green", image: "http://" };
+var YELLOW = { id: 4, color: "yellow", image: "http://" };
+var ORANGE = { id: 5, color: "orange", image: "http://" };
+var GREY = { id: 6, color: "grey", image: "http://" };
+var PINK = { id: 7, color: "pink", image: "http://" };
+
+var LEVELS = [{ id: 1, seed: 12345, stones: [RED, BLUE, GREEN, YELLOW, ORANGE, GREY, PINK] }];
+
+_reactDom2.default.render(_react2.default.createElement(_level.Level, { level: LEVELS[0], width: 10, height: 5 }), document.getElementById('container'));
 
 },{"./components/level.component":160,"react":157,"react-dom":1}],162:[function(require,module,exports){
 "use strict";
 
-var seedRandom = function seedRandom(seed, range) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var seedRandom = exports.seedRandom = function seedRandom(seed, range) {
   var adder = 0;
   return {
     next: function next() {
@@ -19131,7 +19155,5 @@ var seedRandom = function seedRandom(seed, range) {
     }
   };
 };
-
-module.exports = seedRandom;
 
 },{}]},{},[161]);

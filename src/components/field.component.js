@@ -1,11 +1,9 @@
-"use strict";
+import React, { PropTypes } from 'react'
 
-var React = require('react');
-
-var Field = React.createClass({
+export var Field = React.createClass({
   propTypes: {
-    field: React.PropTypes.object,
-    onFieldClick: React.PropTypes.func
+    field: PropTypes.object,
+    onFieldClick: PropTypes.func
   },
   _handleClick: function(event) {
     this.props.onFieldClick(this.props.field);
@@ -22,5 +20,3 @@ var Field = React.createClass({
     );
   }
 });
-
-module.exports = Field;

@@ -1,10 +1,8 @@
-"use strict";
+import React, { PropTypes } from 'react'
+import { Field } from './field.component'
+import { seedRandom } from '../seed-random'
 
-var React = require('react');
-var Field = require('./field.component');
-var seedRandom = require('./../seed-random');
-
-var Level = React.createClass({
+export var Level = React.createClass({
   propTypes: {
     width: React.PropTypes.number,
     height: React.PropTypes.number,
@@ -45,6 +43,3 @@ var Level = React.createClass({
     );
   }
 });
-
-
-module.exports = Level;

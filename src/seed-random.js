@@ -1,6 +1,4 @@
-"use strict";
-
-var seedRandom = function seedRandom(seed, range) {
+export var seedRandom = function seedRandom(seed, range) {
   var adder = 0;
   return {
     next: function() {
@@ -9,5 +7,3 @@ var seedRandom = function seedRandom(seed, range) {
     }
   }
 }
-
-module.exports = seedRandom;
