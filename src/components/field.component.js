@@ -8,7 +8,7 @@ var Field = React.createClass({
     onFieldClick: React.PropTypes.func
   },
   _handleClick: function(event) {
-    this.props.onFieldClick(this.props.field.id);
+    this.props.onFieldClick(this.props.field);
   },
   render: function() {
     var styles = {

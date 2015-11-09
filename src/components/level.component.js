@@ -16,6 +16,10 @@ var Level = React.createClass({
       fields: []
     };
   },
+  componentDidMount: function() {
+    var fields = this.__initializeFields(this.props.level);
+    this.setState({ fields: fields.concat([]) });
+  },
   __initializeFields: function(level) {
     var fieldCount = this.props.width * this.props.height;
     var fields = [];
@@ -26,19 +30,14 @@ var Level = React.createClass({
     }
     return fields;
   },
-  componentDidMount: function() {
-    var fields = this.__initializeFields(this.props.level);
-    this.setState({ fields: fields.concat([]) });
-  },
-  handleFieldClick: function(fieldId) {
-    var field = this.state.fields.find(function(f){ return f.id == fieldId; });
+  _handleFieldClick: function(field) {
     field.state += 1;
     this.setState({ fields: this.state.fields });
   },
   render: function() {
     var createFields = function(field, index) {
       return (
-        <Field key={ field.id } field={ field } onFieldClick={ this.handleFieldClick } />
+        <Field key={ field.id } field={ field } onFieldClick={ this._handleFieldClick } />
       );
     }.bind(this);
     return (
