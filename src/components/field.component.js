@@ -5,8 +5,15 @@ export var Field = React.createClass({
     field: PropTypes.object.isRequired,
     onFieldClick: PropTypes.func
   },
+  getInitialState() {
+    return {
+      count: 0
+    }
+  },
   _handleClick(event) {
-    this.props.onFieldClick(this.props.field);
+    var newCount = this.state.count+1;
+    this.setState({ count: newCount })
+    this.props.onFieldClick(newCount);
   },
   render() {
     var styles = {
@@ -14,7 +21,7 @@ export var Field = React.createClass({
       height: "30px",
       backgroundColor: this.props.field.stone.color
     };
-    var content = [this.props.field.stone.id, "/", this.props.field.state].join('');
+    var content = [this.props.field.stone.id, "/", this.state.count].join('');
     return (
       <div className="field" style={ styles } onClick={ this._handleClick }>{ content }</div>
     );

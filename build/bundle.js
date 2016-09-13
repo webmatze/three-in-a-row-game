@@ -19032,8 +19032,15 @@ var Field = exports.Field = _react2.default.createClass({
     field: _react.PropTypes.object.isRequired,
     onFieldClick: _react.PropTypes.func
   },
+  getInitialState: function getInitialState() {
+    return {
+      count: 0
+    };
+  },
   _handleClick: function _handleClick(event) {
-    this.props.onFieldClick(this.props.field);
+    var newCount = this.state.count + 1;
+    this.setState({ count: newCount });
+    this.props.onFieldClick(newCount);
   },
   render: function render() {
     var styles = {
@@ -19041,7 +19048,7 @@ var Field = exports.Field = _react2.default.createClass({
       height: "30px",
       backgroundColor: this.props.field.stone.color
     };
-    var content = [this.props.field.stone.id, "/", this.props.field.state].join('');
+    var content = [this.props.field.stone.id, "/", this.state.count].join('');
     return _react2.default.createElement(
       "div",
       { className: "field", style: styles, onClick: this._handleClick },
@@ -19094,13 +19101,12 @@ var Level = exports.Level = _react2.default.createClass({
     var myRandomizer = (0, _seedRandom.seedRandom)(level.seed, level.stones.length);
     for (var i = 0; i < fieldCount; i++) {
       var stone = level.stones[myRandomizer.next()];
-      fields.push({ id: i, stone: stone, state: 0 });
+      fields.push({ id: i, stone: stone });
     }
     return fields;
   },
   _handleFieldClick: function _handleFieldClick(field) {
-    field.state += 1;
-    this.setState({ fields: this.state.fields });
+    // do something here
   },
   render: function render() {
     var _this = this;

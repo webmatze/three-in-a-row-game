@@ -28,13 +28,12 @@ export var Level = React.createClass({
     var myRandomizer = seedRandom(level.seed, level.stones.length);
     for (var i = 0; i < fieldCount; i++) {
       var stone = level.stones[myRandomizer.next()];
-      fields.push({ id: i, stone: stone, state: 0 });
+      fields.push({ id: i, stone: stone });
     }
     return fields;
   },
   _handleFieldClick(field) {
-    field.state += 1;
-    this.setState({ fields: this.state.fields });
+    // do something here
   },
   render() {
     var createFields = (field, index) => {
