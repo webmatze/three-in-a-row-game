@@ -19019,7 +19019,6 @@ process.umask = function() { return 0; };
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Field = undefined;
 
 var _react = require("react");
 
@@ -19027,7 +19026,7 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Field = exports.Field = _react2.default.createClass({
+var Field = _react2.default.createClass({
   propTypes: {
     field: _react.PropTypes.object.isRequired,
     onFieldClick: _react.PropTypes.func
@@ -19057,13 +19056,14 @@ var Field = exports.Field = _react2.default.createClass({
   }
 });
 
+exports.default = Field;
+
 },{"react":157}],160:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Level = undefined;
 
 var _react = require('react');
 
@@ -19071,11 +19071,13 @@ var _react2 = _interopRequireDefault(_react);
 
 var _field = require('./field.component');
 
+var _field2 = _interopRequireDefault(_field);
+
 var _seedRandom = require('../seed-random');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Level = exports.Level = _react2.default.createClass({
+var Level = _react2.default.createClass({
   propTypes: {
     width: _react.PropTypes.number.isRequired,
     height: _react.PropTypes.number.isRequired,
@@ -19112,7 +19114,7 @@ var Level = exports.Level = _react2.default.createClass({
     var _this = this;
 
     var createFields = function createFields(field, index) {
-      return _react2.default.createElement(_field.Field, { key: field.id, field: field, onFieldClick: _this._handleFieldClick });
+      return _react2.default.createElement(_field2.default, { key: field.id, field: field, onFieldClick: _this._handleFieldClick });
     };
     return _react2.default.createElement(
       'div',
@@ -19121,6 +19123,8 @@ var Level = exports.Level = _react2.default.createClass({
     );
   }
 });
+
+exports.default = Level;
 
 },{"../seed-random":162,"./field.component":159,"react":157}],161:[function(require,module,exports){
 'use strict';
@@ -19134,6 +19138,8 @@ var _reactDom = require('react-dom');
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _level = require('./components/level.component');
+
+var _level2 = _interopRequireDefault(_level);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -19150,7 +19156,7 @@ var PINK = { id: 7, color: "pink", image: "http://" };
 
 var LEVELS = [{ id: 1, seed: 12345, stones: [RED, BLUE, GREEN, YELLOW, ORANGE, GREY, PINK] }];
 
-_reactDom2.default.render(_react2.default.createElement(_level.Level, { level: LEVELS[0], width: 10, height: 5 }), document.getElementById('container'));
+_reactDom2.default.render(_react2.default.createElement(_level2.default, { level: LEVELS[0], width: 10, height: 5 }), document.getElementById('container'));
 
 },{"./components/level.component":160,"react":157,"react-dom":1}],162:[function(require,module,exports){
 "use strict";

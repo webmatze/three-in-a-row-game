@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import ReactDOM from 'react-dom'
 
 //Components
-import { Level } from './components/level.component'
+import Level from './components/level.component'
 
 const RED = { id: 1, color: "red", image: "http://" };
 const BLUE = { id: 2, color: "blue", image: "http://" };
